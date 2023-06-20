@@ -47,21 +47,12 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
 
   @override
   void setState(VoidCallback fn) {
-
     super.setState(fn);
   }
 
   void formValidation(int type) async{
     if(formKey.currentState!.validate()){
       formKey.currentState!.save();
-      var output = inputController.text.split('');
-      if(type == 0){
-        generatedTriangle = generateNewTriangle(output);
-      } else if(type == 1){
-        generatedTriangle = await generateListOdd(inputController.text);
-      } else{
-        generatedTriangle = generatePrimeNumber(inputController.text);
-      }
       toast('Success');
     }
     setState(() { });
@@ -81,39 +72,58 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
     return temp;
   }
 
-  Future<String> generateListOdd(String s) async {
-    int limit = int.parse(s);
-    List<int> oddNumbers = [2];
-
-    for (var i = 3; i <= limit; i += 2) {
-      oddNumbers.add(i);
+  String generateNewTriangle2(){
+    String s = '';
+    int temp = 5;
+    for(int i = 5; i >0 ; i--){
+      int j = 0;
+      while(j <= 5){
+        if(j<i){
+          s +=' ';
+        }else{
+          s +='*';
+        }
+        j++;
+      }
+      s +='\n';
     }
-
-    return oddNumbers.toString();
+    return s;
   }
 
-  String generatePrimeNumber(String s){
-    int limit = int.parse(s);
-    List<int> primes = [];
 
-    for (var i = 2; i <= limit; i++) {
-      bool isPrime = true;
 
-      //the mistake of the coding I forgot to add ~ before / which work like math floor
-      for (var j = 2; j <= i ~/ 2; j++) {
-        if (i % j == 0) {
-          isPrime = false;
+  String returnNumberOfWord(){
+    String s = '';
+    var arr = [];
+    arr = "saya makan nasi goreng dan adik makan nasi goreng spesial".split(' ');
+
+    // var counts = arr.fold<Map<String, int>>({}, (map, element) {
+    //   map[element] = (map[element] ?? 0) + 1;
+    // });
+    //
+    // counts.forEach((key, value) {
+    //   s += '${key} : ${value} \n';
+    // });
+
+    int i = 0;
+    while(i <= arr.length) {
+      var j = arr.length - 1;
+      int temp = 1;
+      while (j > i) {
+        if (arr[j] == arr[i]) {
+          temp++;
+        }else if(j == i + 1){
+          s += '${arr[i]} : ${temp} \n';
           break;
         }
+        j--;
       }
-
-      if (isPrime) {
-        primes.add(i);
-      }
+      i++;
     }
 
-    return primes.toString();
+    return s;
   }
+
 
 
   @override
@@ -188,7 +198,9 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
                   child: Text('Result',
                       style: boldTextStyle(color: black, size: 32)),
                 ),
-                Text(generatedTriangle, style: secondaryTextStyle(),),
+                Text(generateNewTriangle2(), style: secondaryTextStyle(),),
+                16.height,
+                Text(returnNumberOfWord(), style: secondaryTextStyle(),),
               ],
             ),
           ),

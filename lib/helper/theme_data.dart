@@ -11,7 +11,7 @@ InputDecoration inputDecoration(
     }) {
   return InputDecoration(
     counterText: "",
-    contentPadding: EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
+    contentPadding: const EdgeInsets.only(left: 12, bottom: 10, top: 10, right: 10),
     labelText: labelText,
     labelStyle: secondaryTextStyle(),
     alignLabelWithHint: true,
@@ -22,21 +22,21 @@ InputDecoration inputDecoration(
     suffixIcon: suffixIcon.validate(),
     enabledBorder: OutlineInputBorder(
       borderRadius: radius(borderRadius ?? defaultRadius),
-      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+      borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: radius(borderRadius ?? defaultRadius),
-      borderSide: BorderSide(color: Colors.red, width: 0.0),
+      borderSide: const BorderSide(color: Colors.red, width: 0.0),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: radius(borderRadius ?? defaultRadius),
-      borderSide: BorderSide(color: Colors.red, width: 1.0),
+      borderSide: const BorderSide(color: Colors.red, width: 1.0),
     ),
     errorMaxLines: 2,
     errorStyle: primaryTextStyle(color: Colors.red, size: 12),
     focusedBorder: OutlineInputBorder(
       borderRadius: radius(borderRadius ?? defaultRadius),
-      borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+      borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
     ),
     filled: true,
     fillColor: lawnGreen.withOpacity(.2),
