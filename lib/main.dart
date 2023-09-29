@@ -36,6 +36,7 @@ class GenerateTriangleScreen extends StatefulWidget {
 class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
   TextEditingController inputController = TextEditingController();
   String generatedTriangle = 'Please Input The Data';
+  String assign = '';
   FocusNode f1 = FocusNode();
   final formKey = GlobalKey<FormState>();
 
@@ -44,6 +45,7 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
     // generatedTriangle = 'Please Input The Data';
     // print(0);
     super.initState();
+    assign = printNumber(10);
   }
 
   @override
@@ -59,18 +61,11 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
     setState(() { });
   }
 
-  void print10(){
-    print(printNumber(1));
-  }
-
-
-  int printNumber(int n){
-    if(n == 10){
-      print(10);
-      return 10;
-    }else{
-      print(n);
-      return printNumber(n  + 1);
+  String printNumber(int n){
+    if (n == 1) {
+      return '1';
+    } else {
+      return '${printNumber(n - 1)} $n';
     }
   }
 
@@ -172,11 +167,10 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
                 // Text(generateNewTriangle2(), style: secondaryTextStyle(),),
                 // 16.height,
                 // Text(returnNumberOfWord(), style: secondaryTextStyle(),),
-                Text(printNumber(1).toString()),
+                Text(assign),
                 32.height,
                 Text(arrayNumb()),
                 32.height,
-
               ],
             ),
           ),
