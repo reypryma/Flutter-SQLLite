@@ -1,4 +1,0 @@
-1. Select * from Menu where Menu.product_id != Sales.product_id;
-2. Select * From Sales where Count(Sales.customer_id) = 1;
-3. Select Count(qty) From Sales
-4. -

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const GenerateTriangleScreen(),
+      home:  GenerateTriangleScreen(),
     );
   }
 }
@@ -42,6 +42,7 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
   @override
   void initState() {
     // generatedTriangle = 'Please Input The Data';
+    // print(0);
     super.initState();
   }
 
@@ -58,71 +59,41 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
     setState(() { });
   }
 
-  String generateNewTriangle(List<String> s){
-    String temp = '';
-    for(var i = 0 ; i < s.length ; i++){
-      var zeroRepeat = '';
-      var j = 0;
-      while(j <= i){
-        zeroRepeat += '0';
-        j++;
-      }
-      temp += '${s[i]}$zeroRepeat\n';
-    }
-    return temp;
+  void print10(){
+    print(printNumber(1));
   }
 
-  String generateNewTriangle2(){
-    String s = '';
-    int temp = 5;
-    for(int i = 5; i >0 ; i--){
-      int j = 0;
-      while(j <= 5){
-        if(j<i){
-          s +=' ';
-        }else{
-          s +='*';
+
+  int printNumber(int n){
+    if(n == 10){
+      print(10);
+      return 10;
+    }else{
+      print(n);
+      return printNumber(n  + 1);
+    }
+  }
+
+
+  String arrayNumb(){
+    var arr1 = [1, 2, 3, 4, 10];
+    var arr2 = [3, 15, 5, 6, 8, 9, 11, 12, 13, 4];
+    var arrCombine = [];
+
+
+    for(var i = 0; i < arr1.length; i++){
+      for(var j = 0; j < arr2.length; j++){
+        if(arr1[i] == arr2[j]){
+          arrCombine.add(arr2[j]);
         }
-        j++;
       }
-      s +='\n';
     }
-    return s;
+
+    return arrCombine.toString();
   }
 
 
 
-  String returnNumberOfWord(){
-    String s = '';
-    var arr = [];
-    arr = "saya makan nasi goreng dan adik makan nasi goreng spesial".split(' ');
-
-    // var counts = arr.fold<Map<String, int>>({}, (map, element) {
-    //   map[element] = (map[element] ?? 0) + 1;
-    // });
-    //
-    // counts.forEach((key, value) {
-    //   s += '${key} : ${value} \n';
-    // });
-
-    int i = 0;
-    while(i <= arr.length) {
-      var j = arr.length - 1;
-      int temp = 1;
-      while (j > i) {
-        if (arr[j] == arr[i]) {
-          temp++;
-        }else if(j == i + 1){
-          s += '${arr[i]} : ${temp} \n';
-          break;
-        }
-        j--;
-      }
-      i++;
-    }
-
-    return s;
-  }
 
 
 
@@ -198,9 +169,14 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
                   child: Text('Result',
                       style: boldTextStyle(color: black, size: 32)),
                 ),
-                Text(generateNewTriangle2(), style: secondaryTextStyle(),),
-                16.height,
-                Text(returnNumberOfWord(), style: secondaryTextStyle(),),
+                // Text(generateNewTriangle2(), style: secondaryTextStyle(),),
+                // 16.height,
+                // Text(returnNumberOfWord(), style: secondaryTextStyle(),),
+                Text(printNumber(1).toString()),
+                32.height,
+                Text(arrayNumb()),
+                32.height,
+
               ],
             ),
           ),
