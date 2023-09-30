@@ -1,6 +1,10 @@
 # Flutter Web Task Project
 
 A Question and Answer
+Time Limit : 15:00 time submission : 14:44
+
+![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/8921f20c-844d-444b-b1cf-4799bb77efc3)
+
 
 ## Status Question
 - [x] Question 1 - Completed in 20 minutes
