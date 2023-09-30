@@ -3,29 +3,30 @@
 A Question and Answer
 
 ## Status Question
-[x] Pertanyaan nomor 1 Waktu penyelesaian: 20 menit
-[X] Pertanyaan nomor 2 Waktu penyelesaian: 8 menit
-[x] Pertanyaan nomor 3 Waktu penyelesaian: 40 menit
-[x] Pertanyaan nomor 4 Waktu penyelesaian: 5 menit
-[x] Pertanyaan nomor 5 Waktu penyelesaian: 5 menit
-[x] Pertanyaan nomor 6 Waktu penyelesaian: Belum selesai - 10 jam
-- [x] pertanyaan 6) a 1 jam
-- [x] pertanyaan 6) b 15 menit
-- [x] pertanyaan 6) c 2.5 jam
-- [x] pertanyaan 6) d belum selesai
-- [x] pertanyaan 6) e 4 menit
-- [x] pertanyaan 6) f belum selesai
-
+- [x] Question 1 - Completed in 20 minutes
+- [X] Question 2 - Completed in 8 minutes
+- [x] Question 3 - Completed in 40 minutes
+- [x] Question 4 - Completed in 5 minutes
+- [x] Question 5 - Completed in 5 minutes
+- [x] Question 6 - In Progress (Estimated: 10 hours)
+  - [x] Question 6a - Completed in 1 hour
+  - [x] Question 6b - Completed in 15 minutes
+  - [x] Question 6c - Completed in 2.5 hours
+  - [x] Question 6d - Not yet completed
+  - [x] Question 6e - Completed in 4 minutes
+  - [x] Question 6f - Not yet completed
 
 ## Demo Aplication
 ### 1. Demo jawaban 1 - 5
-   ![question five](https://i.ibb.co/frMbjws/2023-09-30-145329.png)
+![question five](https://i.ibb.co/frMbjws/2023-09-30-145329.png)
 
 ### 2. Demo Jawaban 6
 Tampilkan data tabel Books
-   ![question five](https://i.ibb.co/VJymNTM/2023-09-30-150533.png)
+
+![question five](https://i.ibb.co/VJymNTM/2023-09-30-150533.png)
 
 
-### 3. Filter buku >3000 dan <6000 (klik icon money untuk melakukan filter)
-   ![question five](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
+Filter buku >3000 dan <6000 (klik icon money untuk melakukan filter)
+
+![question five](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
 
