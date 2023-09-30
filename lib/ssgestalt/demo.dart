@@ -7,6 +7,7 @@ import 'package:webmiss/ssgestalt/question_b_two/loop_number.dart';
 import 'package:webmiss/ssgestalt/question_c_three/calculate_date.dart';
 import 'package:webmiss/ssgestalt/question_d_four/array_loop.dart';
 import 'package:webmiss/ssgestalt/question_e_five/denominate_rupiah.dart';
+import 'package:webmiss/ssgestalt/question_six/book_page.dart';
 
 class SSGestaltCodingTest extends StatefulWidget {
   const SSGestaltCodingTest({super.key});
@@ -58,9 +59,9 @@ class _SSGestaltCodingTestState extends State<SSGestaltCodingTest> {
                   AppButton(
                     textColor: black,
                     onTap: (){
-                      formValidation(0);
+                      const BookView().launch(context);
                     },
-                    child: const Text('Number 1: Array List of String'),
+                    child: const Text('Show List Book'),
                   ),
                   16.width,
                   16.height,
