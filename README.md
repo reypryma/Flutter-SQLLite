@@ -18,15 +18,14 @@ A Question and Answer
 
 
 ## Demo Aplication
-1. Demo jawaban 1 - 5
+### 1. Demo jawaban 1 - 5
    ![question five](https://i.ibb.co/frMbjws/2023-09-30-145329.png)
 
-2. Demo Jawaban 6
-
+### 2. Demo Jawaban 6
 Tampilkan data tabel Books
    ![question five](https://i.ibb.co/VJymNTM/2023-09-30-150533.png)
 
 
-Filter buku >3000 dan <6000 (klik icon money untuk melakukan filter)
-    ![question five](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
+### 3. Filter buku >3000 dan <6000 (klik icon money untuk melakukan filter)
+   ![question five](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
 
