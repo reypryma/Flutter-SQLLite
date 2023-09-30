@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:webmiss/helper/theme_data.dart';
+import 'package:webmiss/ssgestalt/demo.dart';
 
 import 'helper/axis.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  GenerateTriangleScreen(),
+      home:  SSGestaltCodingTest(),
     );
   }
 }
@@ -69,12 +70,10 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
     }
   }
 
-
   String arrayNumb(){
     var arr1 = [1, 2, 3, 4, 10];
     var arr2 = [3, 15, 5, 6, 8, 9, 11, 12, 13, 4];
     var arrCombine = [];
-
 
     for(var i = 0; i < arr1.length; i++){
       for(var j = 0; j < arr2.length; j++){
@@ -86,11 +85,6 @@ class _GenerateTriangleScreenState extends State<GenerateTriangleScreen> {
 
     return arrCombine.toString();
   }
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
