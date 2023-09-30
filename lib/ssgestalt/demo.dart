@@ -8,6 +8,7 @@ import 'package:webmiss/ssgestalt/question_c_three/calculate_date.dart';
 import 'package:webmiss/ssgestalt/question_d_four/array_loop.dart';
 import 'package:webmiss/ssgestalt/question_e_five/denominate_rupiah.dart';
 import 'package:webmiss/ssgestalt/question_six/book_page.dart';
+import 'package:webmiss/ssgestalt/question_six/customer_page.dart';
 
 class SSGestaltCodingTest extends StatefulWidget {
   const SSGestaltCodingTest({super.key});
@@ -69,20 +70,11 @@ class _SSGestaltCodingTestState extends State<SSGestaltCodingTest> {
                     color: yellowGreen,
                     textColor: black,
                     onTap: ()async{
-                      formValidation(1);
+                      CustomerView().launch(context);
                     },
-                    child: const Text('Generate Bilangan Ganjil'),
+                    child: const Text('Show Customers'),
                   ),
                   16.width,
-                  16.height,
-                  AppButton(
-                    color: blueViolet,
-                    textColor: black,
-                    onTap: (){
-                      formValidation(3);
-                    },
-                    child: const Text('Generate Bilangan Prima'),
-                  ),
                 ],
               ),
               32.height,

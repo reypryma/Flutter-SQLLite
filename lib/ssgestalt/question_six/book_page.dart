@@ -14,7 +14,7 @@ class BookView extends StatefulWidget {
 
 class _BookViewState extends State<BookView> {
   bool isLoading = true;
-  List<Book>? books;
+  List<Book> books = [];
   final BookController _bookController = BookController();
 
   @override
@@ -28,7 +28,7 @@ class _BookViewState extends State<BookView> {
     try {
       final fetchedBooks = await _bookController.getBooks();
       setState(() {
-        books = fetchedBooks;
+        books = fetchedBooks!;
         isLoading = false;
       });
     } catch (error) {
@@ -36,8 +36,48 @@ class _BookViewState extends State<BookView> {
     }
   }
 
+  Future filterPriceBook() async{
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final fetchedBooks = await _bookController.getBooks();
+
+      final filteredBooks = fetchedBooks!.where((book) {
+        return book.priceRent > 2000 && book.priceRent < 6000;
+      }).toList();
+
+      setState(() {
+        books = filteredBooks;
+        isLoading = false;
+      });
+    } catch (error) {
+      print('Error filtering books by price: $error');
+    }
+  }
+
+  Future showNotRentedBook() async{
+    setState(() {
+      isLoading = true;
+    });
+    print('view not rent');
+    try {
+      books = (await _bookController.getBooksNotYetRented())!;
+      setState(() {
+        isLoading = false;
+      });
+    } catch (error) {
+      print('Error View fetching rented data: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget mHeading(var value) {
+      return Text(value, style: boldTextStyle());
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -48,16 +88,64 @@ class _BookViewState extends State<BookView> {
             Navigator.pop(context);
           },
         ),
-      ),
-      body: isLoading ? LoadingWidget() : ListView(
-        padding: EdgeInsets.all(16),
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        children: [
-
+        actions: [
+          // Add a filter button
+          TextButton.icon(
+            onPressed: showNotRentedBook,
+            icon: Icon(Icons.filter_alt),
+            label: Text("Not Rented"),
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white, textStyle: TextStyle(fontSize: 16),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.monetization_on_outlined, color: saddleBrown),
+            onPressed: () async {
+              await filterPriceBook();
+            },
+          ),
         ],
       ),
+      body: isLoading
+          ? LoadingWidget()
+          : ListView(
+              padding: EdgeInsets.all(16),
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              children: [
+                Text('Buku untuk dirental', style: boldTextStyle())
+                    .paddingBottom(5),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columns: [
+                      DataColumn(label: mHeading('ID'), tooltip: 'id'),
+                      DataColumn(label: mHeading('Title'), tooltip: 'title'),
+                      DataColumn(label: mHeading('Price'), tooltip: 'Price'),
+                      DataColumn(
+                          label: mHeading('Category'), tooltip: 'Category'),
+                    ],
+                    rows: books
+                        .map(
+                          (data) => DataRow(
+                            cells: [
+                              DataCell(Text(data.id.toString(),
+                                  style: secondaryTextStyle())),
+                              DataCell(Text(data.title.toString(),
+                                  style: secondaryTextStyle())),
+                              DataCell(Text(data.priceRent.toStringAsFixed(2),
+                                  style: secondaryTextStyle())),
+                              DataCell(Text(data.bookCategory,
+                                  style: secondaryTextStyle())),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  ).visible(books.isNotEmpty),
+                ),
+              ],
+            ),
     );
   }
 }

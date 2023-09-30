@@ -3,6 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'models/book.dart';
+import 'models/rent.dart';
 
 class DBConstant {
   static const String bookTable = 'book';
@@ -72,7 +73,7 @@ class DatabaseHelper {
             id: maps[i]['id'],
             title: maps[i]['title'],
             author: maps[i]['author'],
-            priceRent: maps[i]['price_rent'],
+            priceRent: (maps[i]['price_rent'] as int).toDouble(),
             bookCategory: maps[i]['book_category'],
           );
         });
@@ -282,5 +283,55 @@ class DatabaseHelper {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+  }
+
+  Future<List<Book>> fetchNotRentedBook() async {
+    final db = await _database;
+    print("fetch not rented books");
+
+    try {
+      final List<Map<String, dynamic>> maps = await db.rawQuery('''
+      SELECT * FROM ${DBConstant.bookTable}
+      LEFT JOIN ${DBConstant.rentTable} ON ${DBConstant.bookTable}.id = ${DBConstant.rentTable}.book_id
+      WHERE ${DBConstant.rentTable}.id IS NULL
+    ''');
+
+      if (maps.isNotEmpty) {
+        return List.generate(maps.length, (i) {
+          return Book(
+            id: maps[i]['id'],
+            title: maps[i]['title'],
+            author: maps[i]['author'],
+            priceRent: (maps[i]['price_rent'] as int).toDouble(),
+            bookCategory: maps[i]['book_category'],
+          );
+        });
+      } else {
+        return [];
+      }
+    } catch (e) {
+      throw ('Error SQLLIT fetching not rented books: $e');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> fetchCustomersWithMoreThan10Rentals() async {
+    final db = await _database;
+
+    try {
+      final List<Map<String, dynamic>> results = await db.rawQuery('''
+      SELECT ${DBConstant.customerTable}.name AS customer_name,
+             ${DBConstant.bookTable}.title AS book_title,
+             COUNT(*) AS amount_borrowed_books
+      FROM ${DBConstant.customerTable}
+      INNER JOIN ${DBConstant.rentTable} ON ${DBConstant.customerTable}.id = ${DBConstant.rentTable}.customer_id
+      INNER JOIN ${DBConstant.bookTable} ON ${DBConstant.rentTable}.book_id = ${DBConstant.bookTable}.id
+      GROUP BY ${DBConstant.customerTable}.name, ${DBConstant.bookTable}.title
+      HAVING COUNT(*) > 10
+    ''');
+      print(results);
+      return results;
+    } catch (e) {
+      throw ('Error SQLLIT fetching customers with more than 10 rentals: $e');
+    }
   }
 }

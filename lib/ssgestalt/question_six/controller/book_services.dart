@@ -6,6 +6,7 @@ class BookController {
   final DatabaseHelper _databaseService = DatabaseHelper();
 
   Future<List<Book>>? getBooks() async {
+    await _databaseService.init();
     print("get books");
     final listBook = await _databaseService.fetchListBook();
 
@@ -20,5 +21,23 @@ class BookController {
     }
     print("${listBook.toString()}");
     return listBook;
+  }
+
+  Future<List<Book>>? getBooksNotYetRented() async {
+    print("get rented books");
+    await _databaseService.init();
+    print("get rented books");
+    final listNotRentedBook = await _databaseService.fetchNotRentedBook();
+    print(listNotRentedBook.toString());
+    return listNotRentedBook;
+  }
+
+  Future<List<Map<String, dynamic>>> getSpecialCustomer() async {
+    try {
+      final specialCustomers = await _databaseService.fetchCustomersWithMoreThan10Rentals();
+      return specialCustomers;
+    } catch (error) {
+      throw('Error fetching special customers: $error');
+    }
   }
 }
