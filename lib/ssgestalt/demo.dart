@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 import 'package:webmiss/helper/axis.dart';
+import 'package:webmiss/helper/loader.dart';
 import 'package:webmiss/ssgestalt/question_a_one/circular_array.dart';
 import 'package:webmiss/ssgestalt/question_b_two/loop_number.dart';
 import 'package:webmiss/ssgestalt/question_c_three/calculate_date.dart';
 import 'package:webmiss/ssgestalt/question_d_four/array_loop.dart';
 import 'package:webmiss/ssgestalt/question_e_five/denominate_rupiah.dart';
 import 'package:webmiss/ssgestalt/question_six/book_page.dart';
+import 'package:webmiss/ssgestalt/question_six/controller/book_services.dart';
 import 'package:webmiss/ssgestalt/question_six/customer_page.dart';
 
 class SSGestaltCodingTest extends StatefulWidget {
@@ -21,12 +24,23 @@ class _SSGestaltCodingTestState extends State<SSGestaltCodingTest> {
   TextEditingController inputController = TextEditingController();
   FocusNode f1 = FocusNode();
   List<String> cars = ["Volvo", "BMW", "Toyota", "Kijang"];
+  BookController? bookController;
+  bool isLoading = true;
 
   final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
+    init();
     super.initState();
+  }
+
+  Future<void> init() async {
+    bookController = Provider.of<BookController>(context, listen: false);
+    await bookController!.init();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -46,7 +60,7 @@ class _SSGestaltCodingTestState extends State<SSGestaltCodingTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteSmoke,
-      body: SingleChildScrollView(
+      body: isLoading ? LoadingWidget() : SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(64),
           width: context.width(),

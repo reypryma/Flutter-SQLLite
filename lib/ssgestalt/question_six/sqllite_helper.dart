@@ -3,7 +3,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'models/book.dart';
-import 'models/rent.dart';
 
 class DBConstant {
   static const String bookTable = 'book';
@@ -291,10 +290,13 @@ class DatabaseHelper {
 
     try {
       final List<Map<String, dynamic>> maps = await db.rawQuery('''
-      SELECT * FROM ${DBConstant.bookTable}
-      LEFT JOIN ${DBConstant.rentTable} ON ${DBConstant.bookTable}.id = ${DBConstant.rentTable}.book_id
-      WHERE ${DBConstant.rentTable}.id IS NULL
+        SELECT B.id, B.title, B.price_rent, B.book_category, R.customer_id
+        FROM Book AS B
+        LEFT JOIN Rent AS R ON B.id = R.book_id
+        WHERE R.id IS NULL;
     ''');
+
+      print("fetch not rented ${maps.toString()}");
 
       if (maps.isNotEmpty) {
         return List.generate(maps.length, (i) {
@@ -319,14 +321,12 @@ class DatabaseHelper {
 
     try {
       final List<Map<String, dynamic>> results = await db.rawQuery('''
-      SELECT ${DBConstant.customerTable}.name AS customer_name,
-             ${DBConstant.bookTable}.title AS book_title,
-             COUNT(*) AS amount_borrowed_books
-      FROM ${DBConstant.customerTable}
-      INNER JOIN ${DBConstant.rentTable} ON ${DBConstant.customerTable}.id = ${DBConstant.rentTable}.customer_id
-      INNER JOIN ${DBConstant.bookTable} ON ${DBConstant.rentTable}.book_id = ${DBConstant.bookTable}.id
-      GROUP BY ${DBConstant.customerTable}.name, ${DBConstant.bookTable}.title
-      HAVING COUNT(*) > 10
+        SELECT C.name AS name_customer, B.title AS book_title, COUNT(R.id) AS times_rented
+        FROM Customer AS C
+        INNER JOIN Rent AS R ON C.id = R.customer_id
+        INNER JOIN Book AS B ON R.book_id = B.id
+        GROUP BY C.id, B.id
+        HAVING COUNT(R.id) > 10
     ''');
       print(results);
       return results;
