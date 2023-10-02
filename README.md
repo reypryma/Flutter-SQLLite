@@ -44,6 +44,7 @@ Remaining solution six
 - [x] show customers that rent more than 10 and shows (nama_customer, judul buku, jumlah buku yang dipinjam) 6f
 
 
-![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/5bbe4780-d110-406d-bdcc-6df261d454cb)
+![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/5066f306-c096-4061-8ef4-82b768f0822e)
+
 
 ![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/aef25143-8714-4325-9017-5fe8c5c1aa1c)
