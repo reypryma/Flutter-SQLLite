@@ -35,8 +35,10 @@ Filter not rented book
 
 
 Filter buku >2000 dan <6000 (klik icon money untuk melakukan filter)
+
 ![question five](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
 
 
 Tampilkan customers that rent more than 10 dengan data name customer, book title dan rent counts, *show list book first to get customers data*
+
 ![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/b7ac8fb6-c96d-48e4-8e23-89c8721ce549)
