@@ -1,5 +1,9 @@
 # Flutter Web Task Project
 
+# [UPDATE FIX BUG and solve the remaining question Test Coding](https://github.com/reypryma/Flutter-SQLLite/tree/03-gestalt-fix)
+<p align="center">>>>(<a href="https://github.com/reypryma/Flutter-SQLLite/tree/03-gestalt-fix">Link for solution</a>)<<<<</p>
+
+
 A Question and Answer
 Time Limit : 15:00 time submission : 14:44
 
@@ -26,7 +30,18 @@ Time Limit : 15:00 time submission : 14:44
 ### 2. Demo Jawaban 6
 Tampilkan data tabel Books
 
-![question five](https://i.ibb.co/VJymNTM/2023-09-30-150533.png)
+![question six](https://i.ibb.co/VJymNTM/2023-09-30-150533.png)
+
+
+Filter buku >2000 dan <6000 (klik icon money untuk melakukan filter)
+
+![question six](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
+
+
+Remaining solution six
+- [x] filter to show not yet rented 6d
+- [x] show customers that rent more than 10 and shows (nama_customer, judul buku, jumlah buku yang dipinjam) 6f
+
 
 
 Filter not rented book
@@ -34,11 +49,16 @@ Filter not rented book
 ![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/bdeb36ff-234c-4189-9efe-a973dc3e1d06)
 
 
-Filter buku >2000 dan <6000 (klik icon money untuk melakukan filter)
 
-![question five](https://i.ibb.co/cQ5ySYc/2023-09-30-150733.png)
+Filter buku >2000 dan <6000 (klik icon money untuk melakukan filter)
+![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/5066f306-c096-4061-8ef4-82b768f0822e)
+
+
+
 
 
 Tampilkan customers that rent more than 10 dengan data name customer, book title dan rent counts, *show list book first to get customers data*
 
 ![image](https://github.com/reypryma/Flutter-SQLLite/assets/36353349/b7ac8fb6-c96d-48e4-8e23-89c8721ce549)
+
+
