@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../helper/loader.dart';
 import 'controller/book_services.dart';
@@ -13,12 +14,13 @@ class CustomerView extends StatefulWidget {
 
 class _CustomerViewState extends State<CustomerView> {
   bool isLoading = true;
-  final BookController _bookController = BookController();
+  late final BookController _bookController;
   late final customers;
 
   @override
   void initState() {
     isLoading = true;
+    _bookController = Provider.of<BookController>(context, listen: false);
     initCustomerData();
     super.initState();
   }

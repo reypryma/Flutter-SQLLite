@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 import 'package:webmiss/helper/loader.dart';
 
 import 'controller/book_services.dart';
@@ -15,11 +16,12 @@ class BookView extends StatefulWidget {
 class _BookViewState extends State<BookView> {
   bool isLoading = true;
   List<Book> books = [];
-  final BookController _bookController = BookController();
+  late final BookController _bookController;
 
   @override
   void initState() {
     isLoading = true;
+    _bookController = Provider.of<BookController>(context, listen: false);
     initFetchBookData();
     super.initState();
   }
@@ -107,7 +109,7 @@ class _BookViewState extends State<BookView> {
         ],
       ),
       body: isLoading
-          ? LoadingWidget()
+          ? const LoadingWidget()
           : ListView(
               padding: EdgeInsets.all(16),
               shrinkWrap: true,
